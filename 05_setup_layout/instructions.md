@@ -39,8 +39,7 @@ Expanded(
 )
 ```
 
-[Expanded documentation](https://api.flutter.dev/flutter/widgets/Expanded-class.html)
-
+[Expanded documentation](https://api.flutter.dev/flutter/widgets/Expanded-class.html)  
 [Flexible documentation](https://api.flutter.dev/flutter/widgets/Flexible-class.html)
 
 ## Placeholder

@@ -1,14 +1,14 @@
-# Step 9: Read messages
+# Step 9: Firebase Integration
 
-Now, we want to make our app able to read messages from the database(Firebase) and display them in the chat list. We'll use Firebase Firestore to store as a database.
+Now, we want to make our app able to send and receive remotely. We'll use Firebase as the database. We'll send a message to store in the database. Once the message is stored, the application displays the updated list of messages.
 
 *You don't need to worry about Firebase Configuration for this Workshop. We'll provide a pre-configured Firebase for you.*
 
 Here is the document structure in the Firestore database:
 
-- `name` [String?] Name of the user
-- `message` [String?] Text of the message
-- `time` [int?] Date and time of the message in milliseconds(Epoch)
+- `name` [String] Name of the user
+- `message` [String] Text of the message
+- `time` [int] Date and time of the message in milliseconds(Epoch)
 
 ---
 
@@ -29,10 +29,8 @@ The `get` method of a `CollectionReference` returns documents of the collection.
 final stream = collectionReference.snapshots();
 ```
 
-[CollectionReference documentation](https://pub.dev/documentation/cloud_firestore/latest/cloud_firestore/CollectionReference-class.html)
-
-[orderBy documentation](https://pub.dev/documentation/cloud_firestore/latest/cloud_firestore/Query/orderBy.html)
-
+[CollectionReference documentation](https://pub.dev/documentation/cloud_firestore/latest/cloud_firestore/CollectionReference-class.html)  
+[orderBy documentation](https://pub.dev/documentation/cloud_firestore/latest/cloud_firestore/Query/orderBy.html)  
 [snapshots documentation](https://pub.dev/documentation/cloud_firestore/latest/cloud_firestore/Query/snapshots.html)
 
 ## StreamBuilder
@@ -54,30 +52,17 @@ StreamBuilder<T>(
 
 [StreamBuilder documentation](https://pub.dev/documentation/flutter/widgets/StreamBuilder-class.html)
 
-## Record fields
+## Create a document / message
 
-> Records are an anonymous, immutable, aggregate type.
-
-```dart
-// record with position argument
-(String, int) nameAndAge = ('John Doe', 35);
-nameAndAge.$1; // John Doe
-nameAndAge.$2; // 35
-```
+To create a document in a collection, we use the `add()` method of the `CollectionReference` class.
 
 ```dart
-// record with fields
-({String name, int age}) person = (name: 'Jane Doe', age: 27);
-person.name; // Jane Doe
-person.age; // 27
+final data = <String, dynamic>{
+  "firstname": 'John',
+  "height": 6,
+};
+
+FirebaseFirestore.instance.collection("subject").add(data);
 ```
 
-```dart
-// record using as a returned value
-({int x, int y}) compute() => (x: 10, y: 15);
-final coords = compute();
-coords.x; // 10
-coords.y; // 15
-```
-
-[Records documentation](https://dart.dev/language/records)
+[add documentation](https://pub.dev/documentation/cloud_firestore/latest/cloud_firestore/CollectionReference/add.html)

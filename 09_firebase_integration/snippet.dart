@@ -1,10 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+final secret = String.fromCharCodes(
+  base64Decode('U2VuZCAiRE9ORSIgdG8gdGhlIGNoYXQgYW5kIHJhaXNlIGhhbmQh'),
+);
+
+final userId = UniqueKey().toString();
 
 void main() async {
   // DO NOT TOUCH: Firebase configuration
@@ -22,6 +30,39 @@ void main() async {
   runApp(FlutterChatWorkshopApp());
 }
 
+class ChatData {
+  final String name;
+  final String message;
+  final DateTime time;
+
+  ChatData({
+    required this.name,
+    required this.message,
+    required this.time,
+  });
+
+  factory ChatData.fromJson(Map<String, dynamic> doc) {
+    return ChatData(
+      name: doc['name'] ?? '',
+      message: doc['message'] ?? '',
+      time: DateTime.fromMillisecondsSinceEpoch(doc['time'] as int? ?? 0),
+    );
+  }
+
+  static List<ChatData> parseChatList(
+    AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
+  ) {
+    return snapshot.data?.docs
+            .map((doc) => ChatData.fromJson(doc.data()))
+            .toList() ??
+        [];
+  }
+}
+
+extension DateTimeExtension on DateTime {
+  String get formatted => DateFormat('hh:mm a').format(this);
+}
+
 class FlutterChatWorkshopApp extends StatelessWidget {
   const FlutterChatWorkshopApp({super.key});
 
@@ -35,13 +76,14 @@ class FlutterChatWorkshopApp extends StatelessWidget {
 }
 
 class FlutterChatPage extends StatefulWidget {
-  FlutterChatPage({super.key});
+  const FlutterChatPage({super.key});
 
   @override
   State<FlutterChatPage> createState() => _FlutterChatPageState();
 }
 
 class _FlutterChatPageState extends State<FlutterChatPage> {
+  final messages = <String>[];
   final controller = TextEditingController();
 
   final stream = FirebaseFirestore.instance
@@ -49,22 +91,16 @@ class _FlutterChatPageState extends State<FlutterChatPage> {
       .orderBy('time', descending: true)
       .snapshots();
 
-  ({
-    String? name,
-    String? message,
-    DateTime time,
-  }) parseDocument(Map<String, dynamic> doc) {
-    final time = DateTime.fromMillisecondsSinceEpoch(doc['time'] as int? ?? 0);
-
-    return (
-      name: doc['name'],
-      message: doc['message'],
-      time: time,
-    );
-  }
-
   void sendMessage(String message) {
-    print(message);
+    if (message.isEmpty) {
+      return;
+    }
+    // TODO 1: Send message to Firebase instead of adding to [messages] list
+    // Collection name: chat
+    // Fields: name: string, message: string, time: int (millisecondsSinceEpoch)
+    setState(() {
+      messages.add(message);
+    });
 
     controller.clear();
   }
@@ -75,25 +111,17 @@ class _FlutterChatPageState extends State<FlutterChatPage> {
       body: Column(
         children: [
           Expanded(
-            child: StreamBuilder(
-              stream: stream,
-              builder: (context, snapshot) {
-                final docs =
-                    snapshot.data?.docs.map((doc) => doc.data()).toList() ?? [];
-
-                return ListView.builder(
-                  reverse: true,
-                  itemCount: docs.length,
-                  itemBuilder: (context, index) {
-                    final doc = parseDocument(docs[index]);
-                    final time = DateFormat('hh:mm a').format(doc.time);
-
-                    return ListTile(
-                      leading: Text(time),
-                      title: Text(doc.message ?? ''),
-                      subtitle: Text(doc.name ?? ''),
-                    );
-                  },
+            // TODO 2: Use stream instead of [messages] list
+            // hint 1: StreamBuilder
+            // hint 2: ChatData.parseChatList(snapshot) to parse the snapshot
+            child: ListView.builder(
+              reverse: true,
+              itemCount: messages.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: Text('now'),
+                  title: Text(messages[messages.length - index - 1]),
+                  subtitle: Text('John Doe'),
                 );
               },
             ),
@@ -104,6 +132,7 @@ class _FlutterChatPageState extends State<FlutterChatPage> {
               controller: controller,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
+                hintText: secret,
                 suffixIcon: IconButton(
                   icon: Icon(Icons.send),
                   onPressed: () => sendMessage(controller.text),

@@ -27,9 +27,6 @@ steps:
   - name: Write Message
     directory: 08_write_message
     has_solution: true
-  - name: Read Message
-    directory: 09_read_messages
-    has_solution: true
-  - name: Send Message
-    directory: 10_send_message
+  - name: Firebase Integration
+    directory: 09_firebase_integration
     has_solution: true
