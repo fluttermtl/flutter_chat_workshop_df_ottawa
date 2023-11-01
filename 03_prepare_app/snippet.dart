@@ -28,6 +28,10 @@ class SomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text(secret)));
+    return Scaffold(
+      body: Center(
+        child: Text(secret),
+      ),
+    );
   }
 }
