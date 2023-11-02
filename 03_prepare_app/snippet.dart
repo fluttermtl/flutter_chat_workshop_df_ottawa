@@ -18,13 +18,13 @@ class FlutterChatWorkshopApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Make it return MaterialApp that has [SomePage] is home.
+    // TODO: Make it return MaterialApp that has [FlutterChatPage] is home.
     return Placeholder();
   }
 }
 
-class SomePage extends StatelessWidget {
-  const SomePage({super.key});
+class FlutterChatPage extends StatelessWidget {
+  const FlutterChatPage({super.key});
 
   @override
   Widget build(BuildContext context) {
