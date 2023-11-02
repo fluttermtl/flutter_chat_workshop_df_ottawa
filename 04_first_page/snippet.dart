@@ -21,7 +21,10 @@ class FlutterChatWorkshopApp extends StatelessWidget {
 class FlutterChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: Make it return the Scaffold with Placeholder in the body.
-    return Placeholder();
+    return Scaffold(
+        // TODO 1: Add an AppBar with a title of 'Flutter Chat'
+        // TODO 2: Add a Center widget with a Text widget with the text 'Hello, world!'
+        // TODO 3: Add a FloatingActionButton with an Icon of Icons.add
+        );
   }
 }

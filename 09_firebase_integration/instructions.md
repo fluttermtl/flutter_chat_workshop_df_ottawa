@@ -38,7 +38,7 @@ final stream = collectionReference.snapshots();
 `StreamBuilder` is a widget that builds itself based on the latest snapshot of interaction with a `Stream`. It automatically synchronizes the widget with the latest data and changes in the stream.
 
 ```dart
-StreamBuilder<T>(
+StreamBuilder(
   stream: stream,
   builder: (context, snapshot) {
     // snapshot.connectionState for status

@@ -30,4 +30,4 @@ Right Panel:
 - Completion: `'Ctrl' + 'Space'`, `'cmd' + 'Space'`
 - Run: `'Ctrl' + 'Enter'`, `'cmd' + 'Enter'`
 - Format: `'Shift' + 'Cmd' + 'F'`, `'Shift' + 'Ctrl' + 'F'`
-- Quick Fix:  `'Alt' + 'Enter'`
+- Quick Fix:  `'Alt' + 'Enter'`, `'Option' + 'Enter'`

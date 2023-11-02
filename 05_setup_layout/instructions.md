@@ -1,9 +1,26 @@
 # Step 5: Setup layout
 
-The main focus of this step is to setup the layout of the application.
-Use the `Placeholder` widget to simulate the components, such as chat list and text input.
+The main focus of this step is to setup the layout of the application. We'll use the `Placeholder` widget to simulate the components, such as chat list and text input. The text input will have a fixed height, and the chat list will take the rest of the space.
 
-![Setup layout](https://raw.githubusercontent.com/fluttermtl/flutter_chat_workshop/assets/setup_layout.png)
+    +----------------------------------+
+    | +------------------------------+ |
+    | |              ▲               | |
+    | |              │               | |
+    | |              │               | |
+    | |              │               | |
+    | |              │               | |
+    | |     Placeholder(ChatList)    | |
+    | |              │               | |
+    | |              │               | |
+    | |              │               | |
+    | |              │               | |
+    | |              ▼               | |
+    | +------------------------------+ |
+    | +------------------------------+ |
+    | |     Paceholder(TextInput)    | |
+    | |                              | |
+    | +------------------------------+ |
+    +----------------------------------+
 
 ---
 
@@ -14,8 +31,7 @@ One of the most common layout patterns is to arrange widgets vertically or horiz
 To create a row or column in Flutter, you add a list of children widgets to a `Row` or `Column` widget. In turn, each child can itself be a row or column, and so on. The following example shows how it is possible to nest rows or columns inside of rows or columns.
 
 ```dart
-// Row(
-Column(
+Column( // Or Row for horizontal layout
   children: [
     SomeWidget(),
     SomeOtherWidget(),
@@ -43,6 +59,9 @@ Expanded(
 [Flexible documentation](https://api.flutter.dev/flutter/widgets/Flexible-class.html)
 
 ## Placeholder
+
+The `Placeholder` is a useful `Widget` during development and prototyping user interface time. Just put `Placeholder` in your code, and you'll see a box with a cross in it. It's a great way to see the layout of your app without implementing the entire UI.
+You can think this way, `Placeholder` is [Lorem Ipsum](https://www.lipsum.com/) for `Widget`.
 
 Placeholder has a `fallbackHeight` property to specify the height or `fallbackWidth` property to specify the width of the placeholder.
 
