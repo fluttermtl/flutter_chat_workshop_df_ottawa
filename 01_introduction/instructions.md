@@ -25,7 +25,9 @@ Right Panel:
 - `Console` - Log of `print` function and errors
 - `Documentation` - Documentation of the focused code
 
-## Flutter IDE Command
+## DartPad Shortcuts
 
-- Commenting: `'ctrl' + '/'`
-- Quick Fix:  `'alt' + 'enter'`
+- Completion: `'Ctrl' + 'Space'`, `'cmd' + 'Space'`
+- Run: `'Ctrl' + 'Enter'`, `'cmd' + 'Enter'`
+- Format: `'Shift' + 'Cmd' + 'F'`, `'Shift' + 'Ctrl' + 'F'`
+- Quick Fix:  `'Alt' + 'Enter'`, `'Option' + 'Enter'`

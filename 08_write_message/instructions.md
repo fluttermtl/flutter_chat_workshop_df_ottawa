@@ -41,3 +41,23 @@ controller.clear();
 ```
 
 [TextEditingController documentation](https://api.flutter.dev/flutter/widgets/TextEditingController-class.html)
+
+## setState
+
+Having a state means that the widget can be updated everytime the state changes.
+To update the state, we need to call the `setState` method.
+
+```dart
+
+int counter = 0; // Defined as a member of WidgetState
+
+TextButton(
+  child: const Text('Increment counter'),
+  onPressed: () {
+    // setState triggers a rebuild of the widget (it calls the build method)
+    setState(() {
+      counter++;
+    });
+  }
+)
+```

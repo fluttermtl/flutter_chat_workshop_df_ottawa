@@ -22,7 +22,16 @@ class FlutterChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Placeholder(),
+      appBar: AppBar(
+        title: const Text('Flutter Chat'),
+      ),
+      body: const Center(
+        child: Text('Hello, world!'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

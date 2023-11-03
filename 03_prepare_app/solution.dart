@@ -19,16 +19,20 @@ class FlutterChatWorkshopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: SomePage(),
+      home: FlutterChatPage(),
     );
   }
 }
 
-class SomePage extends StatelessWidget {
-  const SomePage({super.key});
+class FlutterChatPage extends StatelessWidget {
+  const FlutterChatPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text(secret)));
+    return Scaffold(
+      body: Center(
+        child: Text(secret),
+      ),
+    );
   }
 }

@@ -18,6 +18,12 @@ class SomeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(body: Center(child: Text(secret))));
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text(secret),
+        ),
+      ),
+    );
   }
 }
