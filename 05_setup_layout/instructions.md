@@ -17,7 +17,7 @@ The main focus of this step is to setup the layout of the application. We'll use
     | |              ▼               | |
     | +------------------------------+ |
     | +------------------------------+ |
-    | |     Paceholder(TextInput)    | |
+    | |    Placeholder(TextInput)    | |
     | |                              | |
     | +------------------------------+ |
     +----------------------------------+
