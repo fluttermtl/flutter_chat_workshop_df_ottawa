@@ -20,7 +20,9 @@ Scaffold(
   ),
   body: Text('Body'),
   floatingActionButton: FloatingActionButton(
-    onPressed: () {},
+    onPressed: () {
+      print('FAB Pressed');
+    },
     child: Icon(Icons.add),
   ),
 )

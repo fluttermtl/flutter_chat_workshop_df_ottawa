@@ -29,7 +29,9 @@ class FlutterChatPage extends StatelessWidget {
         child: Text('Hello, world!'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          print('FAB pressed');
+        },
         child: const Icon(Icons.add),
       ),
     );
